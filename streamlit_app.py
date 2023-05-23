@@ -49,8 +49,14 @@ duration = st.sidebar.slider('duration (s)', 0.0, 10.0, value=1.0)
 # limit = st.sidebar.slider('Limit', 1.0, 0.0)
 
 
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(
-    ["Analyse 40k Sars", "Snps prediction", "Artificial Reads", "Artificial Tests", "Real Comparison","Specific Cases"])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(
+    ["Analyse 40k Sars",
+     "Snps prediction",
+     "Artificial Reads",
+     "Artificial Tests",
+     "Real Comparison",
+     "Specific Cases",
+     "Snippy iVar mismatchs"])
 with tab1:
     if gene:
         get_relative_plot(PROTEIN_DICTIONARY[gene], gene)
@@ -74,16 +80,78 @@ with tab4:
     st.image("./artificial_data/MM_identity.png")
     st.image("./artificial_data/Ns_identity.png")
 with tab5:
-    st.image("./real_data/boxplot_alignment_problem.png")
-    st.image("./real_data/boxplot_matches.png")
-    st.image("./real_data/boxplot_gap_ivar.png")
-    st.image("./real_data/boxplot_snippy_conservative.png")
-    st.image("./real_data/boxplot_gap_snippy.png")
-    st.image("./real_data/boxplot_snippy_ivar_mismatch.png")
-    st.image("./real_data/boxplot_ivar_conservative.png")
-    st.image("./real_data/boxplot_uncovered_case.png")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("./real_data/bar_alignment_problem.png",
+                 use_column_width=True)
+    with col2:
+        st.image("./real_data/boxplot_alignment_problem.png",
+                 use_column_width=True)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("./real_data/bar_matches.png", use_column_width=True)
+    with col2:
+        st.image("./real_data/boxplot_matches.png", use_column_width=True)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("./real_data/bar_gap_ivar.png", use_column_width=True)
+    with col2:
+        st.image("./real_data/boxplot_gap_ivar.png", use_column_width=True)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("./real_data/bar_snippy_conservative.png",
+                 use_column_width=True)
+    with col2:
+        st.image("./real_data/boxplot_snippy_conservative.png",
+                 use_column_width=True)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("./real_data/bar_gap_snippy.png", use_column_width=True)
+    with col2:
+        st.image("./real_data/boxplot_gap_snippy.png", use_column_width=True)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("./real_data/bar_snippy_ivar_mismatch.png",
+                 use_column_width=True)
+    with col2:
+        st.image("./real_data/boxplot_snippy_ivar_mismatch.png",
+                 use_column_width=True)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("./real_data/bar_ivar_conservative.png",
+                 use_column_width=True)
+    with col2:
+        st.image("./real_data/boxplot_ivar_conservative.png",
+                 use_column_width=True)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("./real_data/bar_uncovered_case.png", use_column_width=True)
+    with col2:
+        st.image("./real_data/boxplot_uncovered_case.png",
+                 use_column_width=True)
 with tab6:
     st.image("./real_data/s_case_1", use_column_width=True)
     st.image("./real_data/s_case_2", use_column_width=True)
     st.image("./real_data/s_case_3", use_column_width=True)
     st.image("./real_data/s_case_4", use_column_width=True)
+
+with tab7:
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("./real_data/bar_uncovered_case.png", use_column_width=True)
+    with col2:
+        st.image("./real_data/boxplot_uncovered_case.png",
+                 use_column_width=True)
+    st.warning("Some mismatch cases can be seen in rigth side on the barplot")
+
+    st.image("./mismatch/snippy_ivar_mismatch.png")
+    st.text("We can see that more than 100 samples have this clear difference between Snippy and iVar results.")
+
+    # st.image()
